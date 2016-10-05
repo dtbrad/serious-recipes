@@ -1,7 +1,7 @@
 require 'pry'
 class Recipe
 
-  attr_accessor :recipe_name, :recipe_url, :recipe_author
+  attr_accessor :recipe_name, :recipe_url, :recipe_author, :recipe_ingredients, :recipe_description, :recipe_directions
 
   @@all =[]
 
@@ -18,6 +18,12 @@ class Recipe
       new_recipe = Recipe.new(r)
       @@all << new_recipe
     end
+  end
+
+  def add_details
+    details_hash= Scraper.extract_recipe_details(self.recipe_url)
+    details_hash.each {|k, v| self.send("#{k}=", v)}
+    self
   end
 
 end

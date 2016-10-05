@@ -62,11 +62,16 @@ class SeriousRecipes::CLI
       menu
     elsif input.to_i.between?(1, array.length)
       x = array[input.to_i-1]
-      puts "here are recipe details"
+      view_recipe_in_more_detail(x)
+      # puts "here are recipe details"
+      # view_recipe_in_more_detail(x)
       menu
     else
       puts "I did not understand your input. Please try again."
     end
   end
 
+  def view_recipe_in_more_detail(selection)
+    selection.add_details
+  end
 end
