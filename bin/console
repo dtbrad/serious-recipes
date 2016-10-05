@@ -12,3 +12,6 @@ require "serious_recipes"
 
 require "irb"
 IRB.start
+
+require "pry"
+Pry.start
