@@ -2,6 +2,7 @@ require 'pry'
 class SeriousRecipes::CLI
 
   def call
+    Recipe.make_recipes
     greeting
     menu
   end
