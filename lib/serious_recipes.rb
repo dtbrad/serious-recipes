@@ -1,5 +1,2 @@
-require "serious_recipes/version"
-
-module SeriousRecipes
-  # Your code goes here...
-end
+require_relative "./serious_recipes/version"
+require_relative "./serious_recipes/cli"
