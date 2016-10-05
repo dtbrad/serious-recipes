@@ -30,7 +30,7 @@ class SeriousRecipes::CLI
     input=gets.strip.downcase
 
     if input == "list"
-      puts "you selected 'list'"
+      view_recipes
     elsif input == "search"
       puts "you selected 'search'"
     elsif input == "exit"
@@ -39,6 +39,19 @@ class SeriousRecipes::CLI
       puts "I did not understand your input. Please try again"
       menu
     end
-end
+  end
+
+  def view_recipes
+    puts ""
+    puts "Latest Recipes List"
+    puts ""
+    Recipe.all.each.with_index(1) do |r, i|
+      puts "#{i}. #{r.recipe_name}."
+      puts ""
+    end
+    puts ""
+    puts "Enter the number of the recipe you'd like more information on, or type menu to return to the main menu:"
+    puts ""
+  end
 
 end
