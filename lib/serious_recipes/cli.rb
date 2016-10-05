@@ -31,6 +31,7 @@ class SeriousRecipes::CLI
 
     if input == "list"
       view_recipes
+      select_recipe(Recipe.all)
     elsif input == "search"
       puts "you selected 'search'"
     elsif input == "exit"
@@ -52,6 +53,20 @@ class SeriousRecipes::CLI
     puts ""
     puts "Enter the number of the recipe you'd like more information on, or type menu to return to the main menu:"
     puts ""
+  end
+
+  def select_recipe(array)
+    input=nil
+    input=gets.strip.downcase
+    if input == "menu"
+      menu
+    elsif input.to_i.between?(1, array.length)
+      x = array[input.to_i-1]
+      puts "here are recipe details"
+      menu
+    else
+      puts "I did not understand your input. Please try again."
+    end
   end
 
 end
