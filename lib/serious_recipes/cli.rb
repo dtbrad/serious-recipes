@@ -73,5 +73,30 @@ class SeriousRecipes::CLI
 
   def view_recipe_in_more_detail(selection)
     selection.add_details
+    puts ""
+    puts "#{selection.recipe_name}"
+    puts "Created by #{selection.recipe_author}"
+    puts ""
+    puts "#{selection.recipe_description}"
+    puts ""
+    puts ""
+
+
+    puts "Recipe Ingredients:"
+    puts ""
+    selection.recipe_ingredients.each {|i| puts "#{i}"}
+    puts ""
+    puts ""
+    puts "Recipe Directions"
+    puts ""
+    selection.recipe_directions.each.with_index(1) do |step, i|
+      puts "#{i}. #{step}"
+      puts ""
+    end
+    puts ""
+    puts "The directions for this recipe can also be found at #{selection.recipe_url}. Please visit!"
+    puts ""
+    puts ""
   end
+
 end
