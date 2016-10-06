@@ -33,7 +33,7 @@ class SeriousRecipes::CLI
       view_recipes
       select_recipe(Recipe.all)
     elsif input == "search"
-      puts "you selected 'search'"
+      find_recipes_with_your_ingredient
     elsif input == "exit"
     else
       puts ""
@@ -97,6 +97,19 @@ class SeriousRecipes::CLI
     puts "The directions for this recipe can also be found at #{selection.recipe_url}. Please visit!"
     puts ""
     puts ""
+  end
+
+  def find_recipes_with_your_ingredient
+    puts ""
+    puts "what is your ingredient?"
+    input = nil
+    input = gets.strip.downcase
+    binding.pry
+    ingredient = make_input_searchable(input)
+  end
+
+  def make_input_searchable(input)
+    (input_array = [] << [input, input+"s", input.sub(/.{1}$/,'')]).flatten
   end
 
 end

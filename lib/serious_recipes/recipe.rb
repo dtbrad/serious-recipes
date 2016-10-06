@@ -26,4 +26,5 @@ class Recipe
     self
   end
 
+
 end
