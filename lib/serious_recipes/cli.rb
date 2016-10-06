@@ -107,7 +107,27 @@ class SeriousRecipes::CLI
     input = gets.strip.downcase
     ingredient = make_input_searchable(input)
     list = Recipe.select_by_ingredient_array(ingredient)
+    puts "There are #{list.length} recipe(s) that contain the word #{input}."
+    puts ""
+    puts ""
+    list.each.with_index(1) {|r, i| puts "#{i}. #{r.recipe_name}"}
+    if list.empty?
+      puts "Would you like to try another ingredient? Type yes or no to return to the intial menu."
+      input = gets.strip.downcase
+      if input == "yes"
+        find_recipes_with_your_ingredient
+      else
+        menu
+      end
+    else
+      puts ""
+      puts "To view more information on any of these recipes, type its number."
+      puts "Otherwise, type menu to return to the main menu."
+      puts ""
+      select_recipe(list)
+    end
   end
+
 
   def make_input_searchable(input)
     (input_array = [] << [input, input+"s", input.sub(/.{1}$/,'')]).flatten
