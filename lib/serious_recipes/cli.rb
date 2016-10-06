@@ -100,12 +100,13 @@ class SeriousRecipes::CLI
   end
 
   def find_recipes_with_your_ingredient
+    Recipe.all.each {|r| r.add_details }
     puts ""
     puts "what is your ingredient?"
     input = nil
     input = gets.strip.downcase
-    binding.pry
     ingredient = make_input_searchable(input)
+    list = Recipe.select_by_ingredient_array(ingredient)
   end
 
   def make_input_searchable(input)
