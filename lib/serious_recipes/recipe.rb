@@ -27,7 +27,6 @@ class Recipe
   end
 
   def ingredient_array
-
     ing_array = self.recipe_ingredients.join(" ").split
     stripped_ing_array = ing_array.collect {|i| i.gsub(/(\W|\d)/, " ")}
     shrunk_array = stripped_ing_array.collect {|i| i.strip.downcase}
