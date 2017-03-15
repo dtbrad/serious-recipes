@@ -4,12 +4,12 @@ class Scraper
   def self.scrape_latest_recipes
     html = open("http://www.seriouseats.com/recipes")
     doc = Nokogiri::HTML(html)
-    latest_page = doc.css("#posts .module")
+    latest_page = doc.css("#posts .module__wrapper")
     lr_title_array = latest_page.collect do |r|
       {
-        recipe_name: r.css(".title a").text,
-        recipe_url: r.css("a").attribute("href").value,
-        recipe_author: r.css("footer .author").text,
+        recipe_name: r.css(".metadata .title").text,
+        recipe_url: r.css(".module__link").attribute("href").value,
+        recipe_author: r.css(".metadata p").text,
       }
     end
   end
